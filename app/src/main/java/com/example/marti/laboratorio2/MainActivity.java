@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String JsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//Ciao prova 2
+//Ciao
 
 
         super.onCreate(savedInstanceState);

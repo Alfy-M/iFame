@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".editProfile">
+
+
+    <item
+        android:id="@+id/savebutton"
+        android:icon="@drawable/ic_save_white_24dp"
+        android:title="@string/save"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/photomanager"
+        android:title="@string/addPhotoMenu"
+        android:icon="@drawable/ic_add_a_photo_white_24dp"
+       app:showAsAction="always" />
+
+
+</menu>

@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">iFame</string>
+
+    <string name="navigation_drawer_open">Apri il navigation drawer</string>
+    <string name="navigation_drawer_close">Chiudi il navigation drawer</string>
+
+    <string name="nav_orders">Ordini di oggi</string>
+    <string name="nav_profile">Il mio profilo</string>
+    <string name="nav_menu">Gestore menu</string>
+    <string name="nav_tables">Prenotazione tavoli</string>
+    <string name="nav_profile_manager">Gestore profilo</string>
+    <string name="nav_profile_editor">Modifica profilo</string>
+    <string name="title_activity_show_orders">Mostra ordini</string>
+    <string name="order">Mostra ordine</string>
+    <string name="table">Mostra tavolo</string>
+    <string name="foto_eliminata">Foto eliminata!</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="alertTitle">Inserisci foto</string>
+    <string name="alertOpt1">Scatta foto</string>
+    <string name="alertOpt2">Scegli da galleria</string>
+    <string name="alertOpt3">Annulla</string>
+    <string name="addPhoto">Aggiungi foto</string>
+    <string name="name">Nome</string>
+    <string name="description">Descrizione</string>
+    <string name="quantity">Quantità</string>
+    <string name="imgEditor">immagini</string>
+    <string name="delete">Elimina</string>
+    <string name="askDelete">Vuoi procedere all\'eliminazione?</string>
+    <string name="cancel">Annulla</string>
+    <string name="tipToDelete">Tocca la foto per eliminarla!</string>
+    <string name="restName">Nome del ristorante</string>
+    <string name="resAddr">Indirizzo</string>
+    <string name="payMethod">Metodi di pagamento</string>
+    <string name="resCategory">Categoria</string>
+    <string name="openTime">Orario di apertura</string>
+    <string name="closeTime">Orario di chiusura</string>
+    <string name="phoneNum">Numero di telefono</string>
+    <string name="save">Salva</string>
+    <string name="addPhotoMenu">Aggiungi una foto</string>
+    <string name="price">Prezzo</string>
+    <string name="showFood">Mostra piatto</string>
+    <string name="search_hint">Cerca</string>
+    <string name="add">Aggiungi</string>
+    <string name="search">Cerca</string>
+
+
+    <string-array name="category_list">
+        <item>Asiatica</item>
+        <item>Hamburgers</item>
+        <item>Internazionale</item>
+        <item>Italiana</item>
+        <item>Mediterranea</item>
+        <item>Pasticceria &amp; Gelateria</item>
+        <item>Pizza</item>
+        <item>Street Food</item>
+        <item>Sushi</item>
+        <item>Vegetariana &amp; Vegana</item>
+    </string-array>
+
+
+</resources>

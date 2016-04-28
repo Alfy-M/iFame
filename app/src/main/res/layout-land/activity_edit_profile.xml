@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.example.marti.laboratorio2.MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <include layout="@layout/toolbar"></include>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.example.marti.laboratorio2.MainActivity"
+            tools:showIn="@layout/app_bar_main"
+            android:orientation="vertical">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:context="com.example.marti.laboratorio2.editProfile">
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:isScrollContainer="false"
+                    android:fillViewport="true"
+                    android:layout_weight="2">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/restName"
+                            android:textSize="16sp"
+                            android:textStyle="italic"/>
+                        <EditText
+                            android:id="@+id/e_restname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/restName"
+                            android:textSize="20sp"
+                            android:textStyle="italic"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:paddingTop="15dp"
+                            android:textStyle="italic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resAddr"
+                            android:textSize="16sp"/>
+                        <EditText
+                            android:textStyle="italic"
+                            android:id="@+id/e_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPostalAddress"
+                            android:hint="@string/resAddr"
+                            android:textSize="20sp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:paddingTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resCategory"
+                            android:textSize="16sp"
+                            android:textStyle="italic"/>
+
+                        <Spinner
+                            android:id="@+id/e_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/resCategory"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:textStyle="italic"/>
+
+                        <TextView
+                            android:paddingTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/openTime"
+                            android:textSize="16sp"
+                            android:textStyle="italic"/>
+                        <Button
+                            android:id="@+id/e_opening"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:onClick="setOpeningTime"
+                            android:textStyle="italic"/>
+
+
+                        <TextView
+                            android:paddingTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/closeTime"
+                            android:textSize="16sp"
+                            android:textStyle="italic"/>
+                        <Button
+                            android:id="@+id/e_closing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:onClick="setClosingTime"
+                            android:textStyle="italic"/>
+
+
+                        <TextView
+                            android:paddingTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/phoneNum"
+                            android:textSize="16sp"
+                            android:textStyle="italic"/>
+                        <EditText
+                            android:id="@+id/e_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:hint="@string/phoneNum"
+                            android:textSize="20sp"
+                            android:layout_weight="1"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+                </ScrollView>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+
+
+</android.support.v4.widget.DrawerLayout>

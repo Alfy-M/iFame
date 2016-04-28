@@ -1,0 +1,93 @@
+{
+	"reservationData": [{
+		"Nome": "Alfonso",
+		"Cognome": "Martino",
+		"Orario": "12:33",
+		"Email": "alfonsomartino@gmail.com",
+		"Telefono": "324567875",
+		"Ordini": ["Pizza Margherita", "Calzone", "Coca Cola"],
+		"Quantita": [3, 1, 1],
+		"Note": "Se è possibile,poco sale!"
+	}, {
+		"Nome": "Armando",
+		"Cognome": "Cassese",
+		"Orario": "12:45",
+		"Email": "armandocassese@gmail.com",
+		"Telefono": "324567835",
+		"Ordini": ["Pizza Margherita", "Patate Fritte", "Coca Cola","Fanta"],
+		"Quantita": [6, 6, 6, 2],
+		"Note": "Molte patatine"
+	}, {
+		"Nome": "Davide",
+		"Cognome": "Maietta",
+		"Orario": "13:21",
+		"Email": "davidemaietta@gmail.com",
+		"Telefono": "3245678763",
+		"Ordini": ["Pizz Margherita", "Acqua", "Coca Cola"],
+		"Quantita": [2, 0, 3],
+		"Note": "Basilico sulla pizza"
+	}, {
+		"Nome": "Giulio",
+		"Cognome": "Verazzo",
+		"Orario": "13:24",
+		"Email": "giulioverazzo@gmail.com",
+		"Telefono": "3245678123",
+		"Ordini": ["Piazza Margherita", "Pizza Capricciosa", "Coca Cola"],
+		"Quantita": [2, 2, 3],
+		"Note": "Poca mozzarella"
+	}, {
+	  "Nome": "Francesco",
+	  "Cognome": "Suma",
+	  "Orario": "13:30",
+	  "Email": "francescosuma@gmail.com",
+	  "Telefono": "324567555",
+	  "Ordini": ["Piazza Valdostana", "Arancino", "Coca Cola"],
+	  "Quantita": [1,3,4],
+	  "Note": "Basilico sulla pizza"
+	}, {
+	  "Nome": "Valentino",
+	  "Cognome": "Rossi",
+	  "Orario": "13:45",
+	  "Email": "valentinorossi@gmail.com",
+	  "Telefono": "339567835",
+	  "Ordini": ["Piazza Bismark", "Hamburgher di Fassona", "Birra Henekein"],
+	  "Quantita": [1, 1, 2],
+	  "Note": "Poco uovo sulla pizza"
+	},{
+	  "Nome": "Stephen",
+	  "Cognome": "Curry",
+	  "Orario": "13:51",
+	  "Email": "stephen30@gmail.com",
+	  "Telefono": "338567835",
+	  "Ordini": ["Spaghetti al sugo", "Bistecca di Black Angus", "Chimay rossa"],
+	  "Quantita": [1, 1, 2],
+	  "Note": "Bistecca al sangue"
+	},{
+      "Nome": "Kobe",
+      "Cognome": "Bryant",
+      "Orario": "13:57",
+      "Email": "blackMamba@gmail.com",
+      "Telefono": "322567835",
+      "Ordini": ["Bistecca di manzo di Kobe", "Birra artigianale dei maestri Umbri"],
+      "Quantita": [1, 1],
+      "Note": "Bistecca al sangue"
+    }, {
+      "Nome": "Antonio",
+      "Cognome": "Cassano",
+      "Orario": "14:02",
+      "Email": "fantantonio@gmail.com",
+      "Telefono": "3335467123",
+      "Ordini": ["Pasta all'amatriciana", "Pane cafone","Birra Leffe Rossa"],
+      "Quantita": [1, 1, 1],
+      "Note": "Molta pancetta"
+    }, {
+      "Nome": "Rocco",
+      "Cognome": "Siffredi",
+      "Orario": "14:05",
+      "Email": "rocco30@gmail.com",
+      "Telefono": "333303030",
+      "Ordini": ["Pizza alla diavola", "Chinotto"],
+      "Quantita": [2, 1],
+      "Note": "Molto piccante"
+    }]
+}

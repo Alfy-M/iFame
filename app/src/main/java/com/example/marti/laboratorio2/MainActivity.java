@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String JsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//Ciao
-
 
         super.onCreate(savedInstanceState);
         SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(this);

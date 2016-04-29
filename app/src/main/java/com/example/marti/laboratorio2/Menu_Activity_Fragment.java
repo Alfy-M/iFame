@@ -70,7 +70,9 @@ private RecyclerAdapterMenu myAdapter;
     public void onButtonPressedDelete(Boolean check){
         if (check) {
             Show_Order_Fragment obj = (Show_Order_Fragment)getSupportFragmentManager().findFragmentById(R.id.ordini);
-            obj.setText("", "", "", "", "");
+            if ((obj!=null)&&obj.isInLayout()) {
+                obj.setText("", "", "", "", "");
+            }
         }
     }
 

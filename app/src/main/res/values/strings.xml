@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iFame</string>
+    <string name="app_name">iFameClient</string>
 
     <string name="navigation_drawer_open">Apri il navigation drawer</string>
     <string name="navigation_drawer_close">Chiudi il navigation drawer</string>

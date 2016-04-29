@@ -1,99 +1,81 @@
 package com.example.marti.laboratorio2;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
+
+
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    RecyclerView recyclerView;
-    String JsonObject;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,Menu_Fragment.OnButtonPressListener{
+    private RecyclerAdapterMenu myAdapter;
+    private String myString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //ciao
-        
-        
-
-
         super.onCreate(savedInstanceState);
-        SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        JsonObject = app_preferences.getString("json",loadJSONFromAsset());
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(this.getString(R.string.nav_orders));
+        toolbar.setTitle(this.getString(R.string.app_name));
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        setUpRecyclerView();
+
+    }
+    public String getMyData() {
+        return myString;
     }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-
-            InputStream is = getAssets().open("reservationData.json");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+    @Override
+    public void onButtonPressed(String position,String name, String quantity, String price,String description, String image) {
+        //Log.i("Prova1",pos);
+        Show_Order_Fragment obj = (Show_Order_Fragment)getSupportFragmentManager().findFragmentById(R.id.ordini);
+        if ((obj!=null)&&obj.isInLayout()) {
+            obj.setText(name, quantity, price, description, image);
+        } else {
+            Intent intent = new Intent(this,ShowFood.class);
+            intent.putExtra("Nome",name);
+            intent.putExtra("Quantità",quantity);
+            intent.putExtra("Descrizione", description);
+            intent.putExtra("posizione",position);
+            intent.putExtra("Immagine",image);
+            intent.putExtra("Prezzo",price);
+            startActivity(intent);
         }
-        return json;
-
     }
-
-
-
-    private void setUpRecyclerView () {
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
-        RecyclerAdapter adapter = null;
-        try {
-            adapter = new RecyclerAdapter(this, ReservationData.getData(JsonObject));
-        } catch (JSONException e) {
-            e.printStackTrace();
+    @Override
+    public void onButtonPressedDelete(Boolean check){
+        if (check) {
+            Show_Order_Fragment obj = (Show_Order_Fragment)getSupportFragmentManager().findFragmentById(R.id.ordini);
+            if ((obj!=null)&&obj.isInLayout()) {
+                obj.setText("", "", "", "", "");
+            }
         }
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(this);
-        mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,24 +86,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-   // @Override
-    /*public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; questo aggiunge degli elementi alla toolbar se sono presenti
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_add, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Toast.makeText(getApplicationContext(),"Ciao",Toast.LENGTH_SHORT);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("testo",newText);
+                Menu_Fragment articleFrag = (Menu_Fragment)
+                        getSupportFragmentManager().findFragmentById(R.id.menuFragment);
+                articleFrag.filterRecycler(newText);
+                /*Menu_Fragment newFragment = new Menu_Fragment();
+                Bundle args = new Bundle();
+                args.putString("filter",newText);
+*/
+                return false;
+            }
+        });
+
         return true;
-    }*/
-/*
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        int id = item.getItemId();  //prende l'id dell'elemento sulla toolbar premuto
 
+        if (id == R.id.savebutton) {
+            Intent intent=new Intent(getApplicationContext(),FoodGenerator.class);
+            intent.putExtra("chiamante","button");
+            //intent.putExtra("wewe","valore");
+            startActivity(intent);
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
-*/
+
+    //Implemento il Navigation Drawer per l'activity contenitore dei fragments
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -129,7 +145,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_orders) {
-
+            Intent intent = new Intent(this,TablesReservation.class);
+            startActivity(intent);
         } else if(id == R.id.nav_tables) {
             Intent intent = new Intent(this,TablesReservation.class);
             startActivity(intent);
@@ -137,12 +154,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this,Profile.class);
             startActivity(intent);
         } else if (id == R.id.nav_menu) {
-            Intent intent = new Intent(this,Menu_Activity_Fragment.class);
-            startActivity(intent);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
+
 }

@@ -83,15 +83,48 @@ public class Menu_Fragment extends Fragment  {
     }
 
     public void filterRecycler(String query) {
+        SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        JsonObject = app_preferences.getString("jsonMenu",loadJSONFromAsset());
         try {
             mData = MenuData.getData(JsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         final List<MenuData> filteredModelList = filter(mData, query);
-        adapter.setFilter(filteredModelList);
-    }
+        //adapter.setFilter(filteredModelList);
 
+        adapter = new RecyclerAdapterMenu(getActivity(), filteredModelList);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getActivity());
+        mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(mLinearLayoutManagerVertical);
+        adapter.SetOnItemClickListener(new RecyclerAdapterMenu.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View view,String position,String name, String quantity, String price,String description, String image) {
+                Log.i("Prova dentro",name);
+                buttonListener.onButtonPressed(position, name, quantity, price, description, image);
+                Log.d("posizione",position);
+            }
+
+
+        });
+        adapter.SetOnItemClickListenerDelete(new RecyclerAdapterMenu.OnDeleteClickListener() {
+            @Override
+            public void onItemClickDelete(View view, Boolean check, int position) {
+                Log.i("Prova delete",String.valueOf(check));
+                Log.d("posizione",String.valueOf(position));
+
+                buttonListenerDelete.onButtonPressedDelete(check);
+            }
+        });
+
+
+
+
+    }
+    // p   p
+   //0,1,2,3,4,5
     private List<MenuData> filter(List<MenuData> models, String query) {
         query = query.toLowerCase();
 
@@ -102,16 +135,18 @@ public class Menu_Fragment extends Fragment  {
                 filteredModelList.add(model);
             }
         }
+        //0,1
         return filteredModelList;
+        //1,3
     }
 
     private void setUpRecyclerView () {
-        adapter = null;
-        try {
-            adapter = new RecyclerAdapterMenu(getActivity(), MenuData.getData(JsonObject));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            adapter = null;
+            try {
+                adapter = new RecyclerAdapterMenu(getActivity(), MenuData.getData(JsonObject));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         recyclerView.setAdapter(adapter);
         LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(getActivity());
@@ -129,7 +164,7 @@ public class Menu_Fragment extends Fragment  {
         });
         adapter.SetOnItemClickListenerDelete(new RecyclerAdapterMenu.OnDeleteClickListener() {
             @Override
-            public void onItemClickDelete(View view, Boolean check) {
+            public void onItemClickDelete(View view, Boolean check,int position) {
                 Log.i("Prova delete",String.valueOf(check));
                 buttonListenerDelete.onButtonPressedDelete(check);
             }

@@ -105,7 +105,7 @@ public class RecyclerAdapterMenu extends RecyclerView.Adapter<RecyclerAdapterMen
 
     }
     public interface OnDeleteClickListener {
-        public void onItemClickDelete(View view , Boolean check);
+        public void onItemClickDelete(View view , Boolean check, int position);
 
     }
 
@@ -175,7 +175,7 @@ public class RecyclerAdapterMenu extends RecyclerView.Adapter<RecyclerAdapterMen
                     public void onClick(DialogInterface dialog, int which) {
                         try {
                             removeItem(position);
-                            mItemClickListenerDelete.onItemClickDelete(v,true);
+                            mItemClickListenerDelete.onItemClickDelete(v,true,position);
 
 
                         } catch (JSONException e) {
@@ -228,8 +228,7 @@ public class RecyclerAdapterMenu extends RecyclerView.Adapter<RecyclerAdapterMen
         //DA QUESTE ARRAYLIST CREEREMO UN NUOVO OGGETTO JSON CHE RIASSUME (DOPO L'ELIMINAZIONE)
         //TUTTI GLI ORDINI RIMANENTI.
         //SALVEREMO NELLE SHARED PREFERENCES IL NUOVO OGGETTO JSON obj2
-
-
+        int popPosition;
 
         SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String JsonObject = app_preferences.getString("jsonMenu", loadJSONFromAsset());
@@ -245,9 +244,10 @@ public class RecyclerAdapterMenu extends RecyclerView.Adapter<RecyclerAdapterMen
             jsList.add(reservationDataJSON.getJSONObject(k));
         }
 
+        popPosition = searchUnfiltered(position,jsList);
 
         //reservationDataJSON.remove(position);
-        jsList.remove(position);
+        jsList.remove(popPosition);
 
         for(int k=0;k<jsList.size();k++)
         {
@@ -257,17 +257,52 @@ public class RecyclerAdapterMenu extends RecyclerView.Adapter<RecyclerAdapterMen
         obj2.put("MenuData",(Object) reservationDataJSON2);
 
         // logs for debugging
-        Log.i("IOqualcosa", "OLD OBJECT" + obj.toString());
-        Log.i( "IOqualcosa","OLD POSITION IS" + position);
-        Log.i( "IOqualcosa","NEW OBJECT" + obj2.toString());
 
         SharedPreferences.Editor editor = app_preferences.edit();
 
         editor.putString("jsonMenu", obj2.toString());
         editor.commit();
+
+
+
+
         mData.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mData.size());
+
     }
 
+    int searchUnfiltered(int position,ArrayList<JSONObject> jsList){
+        String nameCard=mData.get(position).getName();
+
+
+        Log.i("ricerca",nameCard +"posizione filtrata: " +position);
+
+
+        boolean trovato=false;
+
+
+
+        int i=0;
+        while((!trovato)&&(i<jsList.size()))
+        {
+
+            try
+            {
+
+                trovato=jsList.get(i).get("Nome").toString().equals(nameCard);
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            i++;
+
+        }
+
+
+int popPosition=i-1;
+          Log.i("ricerca","posizione non filtrata: "+ popPosition);
+        return popPosition;
+    }
 }

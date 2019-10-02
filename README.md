@@ -1,11 +1,11 @@
-###iFame
+### iFame
 
-##What's it?
+## What's it?
 An Android mobile application for booking meals from the menu of registred resturants.
 
-##Application Modules
+##A pplication Modules
 
-###User Module
+### User Module
 **Registration**
 **Login**
 **Booking**

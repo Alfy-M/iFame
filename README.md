@@ -11,9 +11,9 @@ An Android  application for booking meals from  menu of registred resturants.
 * **Booking**
 
 ### Caterer Module
-**Registration**
-**Login**
-**Restaurant Insertion**
+* **Registration**
+* **Login**
+* **Restaurant Insertion**
 
 ## Technologies
 
